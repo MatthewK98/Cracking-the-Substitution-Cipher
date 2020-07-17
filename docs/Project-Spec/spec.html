@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<title>CA216 Operating Systems</title>
+	</head>
+<body>
+<h1>CA216 Operating Systems</h1>
+
+<h2>Introduction</h2>
+
+<p>One of the most enjoyable books I ever read was entitled The Codebook by Simon singh. I came across this again a few weeks ago, and the idea for this assignment popped into my head. So aside from everything else, if you&#39;re looking for a good read about this topic, go read that one. However, I digress.</p>
+
+<h2>Project Description</h2>
+
+<p>the objective of this assignment is very simple. You will be given files containing messages which have been encrypted using a cipher. You can assume that the message will be encrypted using either a Caesar Cipher or a substitution cipher. Your job is to crack the code, and find out what the contents of the files are.</p>
+
+<p>however as this is a module which introduces things like processes, threads and the like, there&#39;s a wrinkle to all this. You not only have to crack the code, but your programs have to do so as quickly as possible. You can use any of the following:</p>
+
+<ul>
+	<li>Python&#39;s multiprocessing module</li>
+	<li>Threading</li>
+	<li>any other ideas you may have</li>
+</ul>
+
+<p>You may not use any external libraries such as PyCipher etc. However, if you want to test your own code against this, it may or may not be helpful to do so. In other words: This has to be entirely your own work. You will need to write a &quot;normal&quot; (single threaded) application first. Time how long it takes to crack the code. then experiment with parallelising your code. Are there any differences? Are there parts of the code which cannot/should not be parallelised? Play around, experiment, record test results (timings etc.) you&#39;ll need this data later.</p>
+
+<h2>What You are Required to Do</h2>
+
+<p>You will be required to submit working code at the end of this project. Your code needs to be well designed and commented. Also, you will need to write a 1000-1200 word report explaining:</p>
+
+<ul>
+	<li>How and why you chose the method you did to solve this problem</li>
+	<li>How you tested your program to determine which method was faster. In other words: is the single threaded (as in perfectly normal/traditional) implementation faster than one using multiprocessing, threading, or a combination of both.</li>
+	<li>Explain your results. Why do you think you got the answers you did.</li>
+	<li>What would you do differently were you to undertake this exercise again?</li>
+</ul>
+
+<p>Please note that when I am grading your programs, I will not look at lots of different versions. I will look at the version which includes evidence of threads, processes and the other ideas you have used. I need to stress this, as many of you will have lots of different versions of the program.</p>
+
+<h2>What Output Should the Program Produce?</h2>
+
+<p>As has been mentioned before, your program should take a text file as input. It should analyse that file and produce two files as its output:</p>
+
+<ol>
+	<li>the decrypted message. You should use the following as a naming scheme inputfilename-decrypted.txt</li>
+	<li>a file containing the key. The file should be named: inputfilename-key.txt and should take the form letter = cipher-letter.</li>
+</ol>
+
+<p>See the examples provided for more details on the format of each of these files.</p>
+
+<h2>How to proceed</h2>
+
+<h3>Step 0</h3>
+
+<p>Before you begin, visit the following link:</p>
+
+<p><a href="https://gitlab.computing.dcu.ie/dfitzpat/2020-ca216-cipher-crack">Link to cipher-crack gitlab repository</a></p>
+
+<p>You should fork this repository and rename it as follows: &quot;id-number-cipher-crack&quot;. this will guarantee that all repositories have a unique name.</p>
+
+<p>Explore this repo, and become familiar with the contents. It should all be self-explanatory as each folder has been named to reflect its contents. You should keep this folder structure.</p>
+
+<p>Be sure to grant me access to this repo with the highest level of privileges possible. I will be providing feedback using the repositories.</p>
+
+<h3>Step 1: Do It Yourself.</h3>
+
+<p>Write a program which takes a file of text and encrypts it using a substitution cipher. Or, find some code online which does this. This way, you know both the plaintext, and the resulting cipher text. You can then work backwards to decrypt it. You will have to:</p>
+
+<ul>
+	<li>find the key</li>
+	<li>use the key to transform the cipher text back to the plain text</li>
+</ul>
+
+<p>You can, if you wish, start to build in your telemetry once you have a reasonably stable solution. In other words: You can test how long it takes to crack the cipher in the situation where you have all of the facts. This way, you can firstly get a solution with which you&#39;re happy, and then add in the timings.</p>
+
+<h3>Step 2</h3>
+
+<p>At the end of week 8, I will give you files in cipher text. You will be given:</p>
+
+<ul>
+	<li>the cipher text for all files</li>
+	<li>The plain text for all files</li>
+	<li>The key for all files.</li>
+	<li>You can then apply your own programs to these new files. .</li>
+</ul>
+
+<p>Again, do some testing to determine the impact (if any) of parallelising the process of cracking the cipher. Make notes etc.</p>
+
+<h3>Step 3: After Submission</h3>
+
+<p>After submission, I will run your code on files which you have not been given. The marks will be awarded for how well your programs crack the messages I use. I will use either a message encrypted using a Caesar Cipher, or a substitution cipher to test your code.  You must choose which encryption technique you wish me to use.  Note that if you choose a Caesar cipher, you will only receive a maximum grade of 50%, as this technique only involves shifting letters up or down the alphabet, whereas the substitution cipher uses a far more complex key. I will look at the key you produce and compare it against the actual key.</p>
+
+<h2>Some Pointers</h2>
+
+<p>You will need to do some frequency analysis on the text.  Remember that in a Caesar cipher each letter is simply shifted up (or down) the alphabet by a fixed amount.  So if the shift is +3, then a becomes d, b becomes e etc.  In a substitution cipher, this won't be the case.  Here, a random letter is assigned as the cipher-equivalent of a character in the plain-text.</p>
+
+<p>You can, however, use probabilities to help you.  If, for example, the letter 'w' appears most often in your cipher-text, then you can be fairly certain that it equates to 'e'.  Also, look for commonly occurring groups of two letters.  There are only a few of these.  You can use this sort of information to help you.  In the links at the bottom of this document, and also in the &quot;resources&quot; folder in the gitlab repo, there are resources which will help you with this project.</p>
+
+<h2>Checking your Solution</h2>
+
+<p>You can verify your solution by inspection. There is no need to automatically look up lots of word dictionaries to see if you have cracked the code successfully. The easiest way to do this is to look at the output and the key. Have you matched all letters? Does each letter correspond to one letter in the cipher alphabet? do the words make sense? </p>
+
+<h2>Marking guidelines</h2>
+
+<p>The following are the criteria by which the project will be graded.</p>
+
+<ol>
+	<li>You will receive 1 mark for each letter in the key  you crack correctly. If you get them all, this gets rounded up to 30.  </li>
+	<li>You will receive up to 30 marks for the quality of your solution.</li>
+	<li>You will receive up to 10 marks for the quality of the testing you have used to determine which version of the code is quicker.</li>
+	<li>You will receive up to 30 marks for the report.</li>
+</ol>
+
+<h2>Resources</h2>
+
+<p>Below is a list of resources which, I hope, will help you with this project. They are all taken from the website of the wonderful Simon singh. I also wish to acknowledge the invaluable help of my colleague Geoff Hamilton. Geoff teaches this material in fourth year and on our masters in Computing, and he has kindly made his resources available to you to help with this project. I am very grateful to Geoff for his help, and wish to point out that he holds the copyright to the notes which he has kindly shared.</p>
+
+<ul>
+	<li><a href="https://simonsingh.net/The_Black_Chamber/crackingsubstitution.html">Cracking the Substitution Cipher</a></li>
+	<li><a href="https://simonsingh.net/The_Black_Chamber/letterfrequencies.html">[letter Frequencies</a></li>
+	<li><a href="https://simonsingh.net/The_Black_Chamber/hintsandtips.html">Hints and Tips</a></li>
+<li><a href="https://simonsingh.net/The_Black_Chamber/substitutioncrackingtool.html">Cipher Cracking Tool</a></li>
+</ul>
+</body>
+</html>
+
