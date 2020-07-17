@@ -1,5 +1,4 @@
 #Student name : Matthew Kenny
-#Student Number : 17470802
 #Confirmation that substitution cipher is the version I want graded for this project
 import sys
 from string import punctuation
